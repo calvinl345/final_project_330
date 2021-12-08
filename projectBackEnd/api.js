@@ -58,7 +58,7 @@ app.put("/api/restaurants/:id", (req, res) => {
     });
 });
 
-//Delete a restaurant
+//Delete a restaurantt
 app.delete("/api/restaurants/:id", (req, res) => {
     res.status(204).json({
         status: "sucsess",
