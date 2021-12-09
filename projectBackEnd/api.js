@@ -5,10 +5,12 @@
 require("dotenv").config();
 const express = require("express");
 const db = require("./db");
+const cors = require("cors");
 ////////// Middleware //////////
 
 ////////////////////////////////
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 ////////// API Config //////////
@@ -60,10 +62,10 @@ app.get("/api/restaurants/:id", async (req, res) => {
 app.post("/api/restaurants/create", async (req, res) => {
     try {
         const results = await db.query(
-            "INSERT INTO yelp.restaurants (name, location, price_range) values ($1, $2, $3) returning *",
-            [req.body.name, req.body.location, req.body.price_range]
+            "INSERT INTO yelp.restaurants (name, location, rating) values ($1, $2, $3) returning *",
+            [req.body.name, req.body.location, req.body.rating]
         );
-        console.log(results);
+        //console.log(results);
         res.status(201).json({
             status: "sucsess",
             data: { restaurant: results.rows[0] },
@@ -77,15 +79,10 @@ app.post("/api/restaurants/create", async (req, res) => {
 app.put("/api/restaurants/:id", async (req, res) => {
     try {
         const results = await db.query(
-            "UPDATE yelp.restaurants SET name = $1, location = $2, price_range = $3 where id = $4 returning *",
-            [
-                req.body.name,
-                req.body.location,
-                req.body.price_range,
-                req.params.id,
-            ]
+            "UPDATE yelp.restaurants SET name = $1, location = $2, rating = $3 WHERE id = $4 returning *",
+            [req.body.name, req.body.location, req.body.rating, req.params.id]
         );
-        console.log(results);
+        //console.log(results);
         res.status(200).json({
             status: "sucsess",
             data: { restaurant: results.rows[0] },

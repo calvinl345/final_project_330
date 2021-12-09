@@ -6,6 +6,6 @@ CREATE TABLE yelp.restaurants (
 	id bigserial not null primary key,
 	name text not null, 
 	location text not null,
-    price_range INT not null
+	rating int not null
 
 );
