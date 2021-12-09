@@ -38,7 +38,7 @@ const RestaurantList = (props) => {
 
     return (
         <div className="list-group">
-            <table className="table table-hover table-dark">
+            <table className="table table-bordered">
                 <thead>
                     <tr className="bg-primary">
                         <th scope="col">Restaurant</th>
@@ -62,7 +62,7 @@ const RestaurantList = (props) => {
                                             onClick={() =>
                                                 handleUpdate(restaurant.id)
                                             }
-                                            className="btn btn-warning"
+                                            className="btn btn-info"
                                         >
                                             Update
                                         </button>
